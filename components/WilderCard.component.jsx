@@ -2,10 +2,7 @@ import Image from "next/image";
 import blank_profile from "../public/blank_profile_picture.png";
 
 import { useState } from "react";
-import styles from "../styles/WilderCardStyles.module.css";
-import Skill from "./SkillComponent";
-
-import wildersData from "./data";
+import Skill from "./Skill.component";
 
 const WilderCard = ({ wilder }) => {
   // const [count, setCount] = useState(0);

@@ -1,5 +1,6 @@
 import WilderCard from "../components/WilderCard.component";
 import wildersData from "./CardList.data";
+import "../styles/CardList.module.css";
 
 const CardList = () => {
   return (

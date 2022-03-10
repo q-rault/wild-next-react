@@ -3,8 +3,9 @@ import blank_profile from "../public/blank_profile_picture.png";
 
 import { useState } from "react";
 import Skill from "./SkillComponent";
+import styles from "../styles/WilderCardStyles.module.css";
 
-const WilderCard = ({ wilder, styles }) => {
+const WilderCard = ({ wilder }) => {
   // const [count, setCount] = useState(0);
   const { name, city, skills } = wilder;
   return (

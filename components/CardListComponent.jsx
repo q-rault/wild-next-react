@@ -3,7 +3,7 @@ import styles from "../styles/CardListStyles.module.css";
 
 const CardList = ({ wilders }) => {
   return (
-    <main className={styles.container}>
+    <main className={styles.container + " container"}>
       <h2>Wilders</h2>
       <section className={styles["card-row"]}>
         {wilders.map((wilder) => (

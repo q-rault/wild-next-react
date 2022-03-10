@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
-import AddWilder from "../components/AddWilderForm";
+import AddWilderForm from "../components/WilderForm";
 import CardList from "../components/CardListComponent";
 import apiRequests from "../config/apiRequests.config";
 
@@ -25,8 +25,8 @@ const Home = () => {
           <h1>Wilders Book</h1>
         </div>
       </header>
+      <AddWilderForm />
       <CardList wilders={wilders} />
-      <AddWilder />
       <footer>
         <div className="container">
           <p>&copy; 2022 Wild Code School</p>

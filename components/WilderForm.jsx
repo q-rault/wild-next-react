@@ -1,8 +1,9 @@
 import { useState } from "react";
 import axios from "axios";
 import apiRequests from "../config/apiRequests.config";
+import styles from "../styles/WilderFormStyles.module.css";
 
-function AddWilder() {
+function AddWilderForm() {
   const [name, setName] = useState("");
   const [city, setCity] = useState("");
   const [error, setError] = useState([]);
@@ -26,14 +27,17 @@ function AddWilder() {
     }
   };
   return (
-    <form onSubmit={handleSubmit}>
-      <label htmlFor="name-input">Name :</label>
+    <form onSubmit={handleSubmit} className={styles.form}>
+      <label htmlFor="name-input" className={styles.label}>
+        Name :
+      </label>
       <input
         id="name-input"
         type="text"
         placeholder="Type the name"
         value={name}
         onChange={(e) => setName(e.target.value)}
+        className={styles.input}
       />
       <label htmlFor="city-input">City :</label>
       <input
@@ -42,11 +46,12 @@ function AddWilder() {
         placeholder="Type the city"
         value={city}
         onChange={(e) => setCity(e.target.value)}
+        className={styles.input}
       />
       {error !== "" && <p>{error}</p>}
-      <button>Add</button>
+      <button className={styles.button}>Add</button>
     </form>
   );
 }
 
-export default AddWilder;
+export default AddWilderForm;

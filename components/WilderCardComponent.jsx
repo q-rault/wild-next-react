@@ -23,7 +23,7 @@ const WilderCard = ({ wilder }) => {
       <h4>Wild Skills</h4>
       <ul className={styles.skills}>
         {skills.map((skill) => (
-          <Skill key={skill.title} skill={skill} styles={styles} />
+          <Skill key={skill.title} skill={skill} />
         ))}
       </ul>
     </article>

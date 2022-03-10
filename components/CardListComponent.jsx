@@ -8,7 +8,7 @@ const CardList = () => {
       <h2>Wilders</h2>
       <section className={styles["card-row"]}>
         {wildersData.map((wilder) => (
-          <WilderCard key={wilder.name} wilder={wilder} styles={styles} />
+          <WilderCard key={wilder.name} wilder={wilder} />
         ))}
       </section>
     </main>

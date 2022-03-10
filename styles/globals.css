@@ -62,3 +62,7 @@ header {
 footer {
   border-top: 2px solid #f76c6c;
 }
+
+.inline-button {
+  cursor: pointer;
+}

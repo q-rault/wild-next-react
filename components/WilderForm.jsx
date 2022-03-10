@@ -27,7 +27,7 @@ function AddWilderForm() {
     }
   };
   return (
-    <form onSubmit={handleSubmit} className={styles.form}>
+    <form onSubmit={handleSubmit} className={styles.form + " container"}>
       <label htmlFor="name-input" className={styles.label}>
         Name :
       </label>

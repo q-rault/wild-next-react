@@ -6,6 +6,7 @@ import apiRequests from "../config/apiRequests.config";
 
 const Home = () => {
   const [wilders, setWilders] = useState([]);
+  const [trigger, setTrigger] = useState(0);
   const fetchData = async () => {
     try {
       const result = await axios.get(apiRequests.wilderReadString);
@@ -16,7 +17,11 @@ const Home = () => {
   };
   useEffect(() => {
     fetchData();
-  }, []);
+  }, [trigger]);
+
+  const handleTrigger = () => {
+    setTrigger(trigger + 1);
+  };
 
   return (
     <div>
@@ -25,8 +30,8 @@ const Home = () => {
           <h1>Wilders Book</h1>
         </div>
       </header>
-      <AddWilderForm />
-      <CardList wilders={wilders} />
+      <AddWilderForm handleTrigger={handleTrigger} />
+      <CardList wilders={wilders} handleTrigger={handleTrigger} />
       <footer>
         <div className="container">
           <p>&copy; 2022 Wild Code School</p>

@@ -2,13 +2,13 @@ import Image from "next/image";
 import blank_profile from "../public/blank_profile_picture.png";
 
 import { useState } from "react";
-import Skill from "./Skill.component";
+import Skill from "./SkillComponent";
 
-const WilderCard = ({ wilder }) => {
+const WilderCard = ({ wilder, styles }) => {
   // const [count, setCount] = useState(0);
   const { name, city, skills } = wilder;
   return (
-    <article className="card">
+    <article className={styles.card}>
       <Image src={blank_profile} alt={`${name}Profile`} />
       <h3>
         {name} @ {city}
@@ -20,9 +20,9 @@ const WilderCard = ({ wilder }) => {
         commodo consequat.
       </p>
       <h4>Wild Skills</h4>
-      <ul className="skills">
+      <ul className={styles.skills}>
         {skills.map((skill) => (
-          <Skill key={skill.title} skill={skill} />
+          <Skill key={skill.title} skill={skill} styles={styles} />
         ))}
       </ul>
     </article>

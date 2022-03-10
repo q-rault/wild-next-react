@@ -1,4 +1,4 @@
-import CardList from "../components/CardList.component";
+import CardList from "../components/CardListComponent";
 
 const Home = () => {
   return (

@@ -1,10 +1,10 @@
-const Skill = ({ skill }) => {
+const Skill = ({ skill, styles }) => {
   const { title, votes } = skill;
   // const [count, setCount] = useState(0);
   return (
     <li>
       {title}
-      <span className="votes">{votes}</span>
+      <span className={styles.votes}>{votes}</span>
     </li>
   );
 };

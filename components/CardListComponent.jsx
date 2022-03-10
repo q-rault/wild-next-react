@@ -1,13 +1,12 @@
 import WilderCard from "./WilderCardComponent";
-import wildersData from "./CardList.data";
 import styles from "../styles/CardListStyles.module.css";
 
-const CardList = () => {
+const CardList = ({ wilders }) => {
   return (
     <main className={styles.container}>
       <h2>Wilders</h2>
       <section className={styles["card-row"]}>
-        {wildersData.map((wilder) => (
+        {wilders.map((wilder) => (
           <WilderCard key={wilder.name} wilder={wilder} />
         ))}
       </section>

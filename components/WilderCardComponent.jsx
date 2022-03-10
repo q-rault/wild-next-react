@@ -1,7 +1,6 @@
 import Image from "next/image";
 import blank_profile from "../public/blank_profile_picture.png";
 
-import { useState } from "react";
 import Skill from "./SkillComponent";
 import styles from "../styles/WilderCardStyles.module.css";
 

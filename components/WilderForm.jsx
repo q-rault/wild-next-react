@@ -1,16 +1,31 @@
 import { useState } from "react";
 import styles from "../styles/WilderFormStyles.module.css";
 import { createWilder } from "../api/wilderAPI";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
+
+const schema = yup
+  .object({
+    wilderName: yup.string().required(),
+    wilderCity: yup.string().required(),
+  })
+  .required();
 
 function AddWilderForm({ handleTrigger }) {
-  const [name, setName] = useState("");
-  const [city, setCity] = useState("");
   const [error, setError] = useState([]);
 
-  const handleSubmit = async (e) => {
-    e.preventDefault();
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
+  const onSubmit = async (data) => {
+    const { wilderName, wilderCity } = data;
     try {
-      const result = await createWilder(name, city);
+      const result = await createWilder(wilderName, wilderCity);
       if (result.data.success) {
         setError("");
         handleTrigger();
@@ -23,28 +38,21 @@ function AddWilderForm({ handleTrigger }) {
       }
     }
   };
+
   return (
-    <form onSubmit={handleSubmit} className={styles.form + " container"}>
+    <form
+      onSubmit={handleSubmit(onSubmit)}
+      className={styles.form + " container"}
+    >
       <label htmlFor="name-input" className={styles.label}>
         Name :
       </label>
-      <input
-        id="name-input"
-        type="text"
-        placeholder="Type the name"
-        value={name}
-        onChange={(e) => setName(e.target.value)}
-        className={styles.input}
-      />
+      <input className={styles.input} {...register("wilderName")} />
+      <p>{errors.wilderName?.message}</p>
       <label htmlFor="city-input">City :</label>
-      <input
-        id="city-input"
-        type="text"
-        placeholder="Type the city"
-        value={city}
-        onChange={(e) => setCity(e.target.value)}
-        className={styles.input}
-      />
+      <input className={styles.input} {...register("wilderCity")} />
+      <p>{errors.wilderCity?.message}</p>
+
       {error !== "" && <p>{error}</p>}
       <button className={styles.button}>Add</button>
     </form>

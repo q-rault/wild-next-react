@@ -5,17 +5,11 @@ import Skill from "./SkillComponent";
 import styles from "../styles/WilderCardStyles.module.css";
 import InlineButton from "./InlineButtonComponent";
 import { updateWilderFromSkills } from "../utils/wilder.utils";
-import { useState } from "react";
 import SkillForm from "./SkillForm";
 import { updateWilder, deleteWilder } from "../api/wilderAPI";
 
 const WilderCard = ({ wilder, handleTrigger }) => {
   const { name, city, skills } = wilder;
-  const [newSkill, setNewSkill] = useState([]);
-
-  const newSkillChange = (event) => {
-    setNewSkill({ title: event.target.value, votes: 0 });
-  };
 
   const handleRemove = async (e) => {
     try {
@@ -64,8 +58,12 @@ const WilderCard = ({ wilder, handleTrigger }) => {
           />
         ))}
         <SkillForm
-          newSkillChange={newSkillChange}
-          handleValidation={(e) => handleWilderUpdate(newSkill, +1)}
+          newSkillChange={(data) =>
+            handleWilderUpdate(
+              { title: data.newSkill.toLowerCase(), votes: 0 },
+              +1
+            )
+          }
         />
       </ul>
     </article>

@@ -1,19 +1,31 @@
 import styles from "../styles/SkillStyles.module.css";
+import { useForm } from "react-hook-form";
+import { yupResolver } from "@hookform/resolvers/yup";
+import * as yup from "yup";
 
-const SkillForm = ({ newSkillChange, handleValidation }) => {
+const schema = yup
+  .object()
+  .shape({
+    newSkill: yup.string().required(),
+  })
+  .required();
+
+const SkillForm = ({ newSkillChange }) => {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm({
+    resolver: yupResolver(schema),
+  });
   const handleKeyUp = (e) => {
     if (e.key === "Enter") {
-      handleValidation();
+      handleSubmit(newSkillChange)();
     }
   };
   return (
     <li className={styles.li} onKeyUp={handleKeyUp}>
-      <input
-        className=""
-        type="search"
-        placeholder="new Skill"
-        onChange={newSkillChange}
-      />
+      <input {...register("newSkill")} />
     </li>
   );
 };

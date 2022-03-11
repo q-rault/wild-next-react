@@ -17,7 +17,7 @@ export const updateWilder = async (id, wilder) => {
   }
 };
 
-export const addWilder = async (name, city) => {
+export const createWilder = async (name, city) => {
   try {
     return await axios.post(apiRequests.wilderCreateString, {
       name: name,

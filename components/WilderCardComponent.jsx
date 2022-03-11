@@ -7,7 +7,7 @@ import InlineButton from "./InlineButtonComponent";
 import { updateWilderFromSkills } from "../utils/wilder.utils";
 import { useState } from "react";
 import SkillForm from "./SkillForm";
-import { deleteWilder } from "../api/wilderAPI";
+import { updateWilder, deleteWilder } from "../api/wilderAPI";
 
 const WilderCard = ({ wilder, handleTrigger }) => {
   const { name, city, skills } = wilder;

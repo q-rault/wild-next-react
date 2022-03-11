@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styles from "../styles/WilderFormStyles.module.css";
-import { addWilder } from "../api/wilderAPI";
+import { createWilder } from "../api/wilderAPI";
 
 function AddWilderForm({ handleTrigger }) {
   const [name, setName] = useState("");
@@ -10,7 +10,7 @@ function AddWilderForm({ handleTrigger }) {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const result = await addWilder(name, city);
+      const result = await createWilder(name, city);
       if (result.data.success) {
         setError("");
         handleTrigger();

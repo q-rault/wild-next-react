@@ -6,48 +6,37 @@ import styles from "../styles/WilderCardStyles.module.css";
 import InlineButton from "./InlineButtonComponent";
 import apiRequests from "../config/apiRequests.config";
 import axios from "axios";
-import { updateSkills, updateWilder } from "../utils/wilder.utils";
+import { updateWilderFromSkills } from "../utils/wilder.utils";
+import { useState } from "react";
+import SkillForm from "./SkillForm";
+import { deleteWilder } from "../api/wilderAPI";
 
 const WilderCard = ({ wilder, handleTrigger }) => {
   const { name, city, skills } = wilder;
+  const [newSkill, setNewSkill] = useState([]);
+
+  const newSkillChange = (event) => {
+    setNewSkill({ title: event.target.value, votes: 0 });
+  };
+
   const handleRemove = async (e) => {
     try {
-      const data = await axios.delete(
-        `${apiRequests.wilderDeleteString}${wilder._id}`
-      );
+      await deleteWilder(wilder._id);
       handleTrigger();
     } catch (err) {
       console.log(err);
     }
   };
 
-  const handleWilderUpdate = async (newWilder) => {
+  const handleWilderUpdate = async (skillToUpdate, increment) => {
     try {
-      const data = await axios.put(
-        `${apiRequests.wilderUpdateString}${wilder._id}`,
-        newWilder
+      const newWilder = updateWilderFromSkills(
+        wilder,
+        skillToUpdate,
+        increment
       );
+      await updateWilder(wilder._id, newWilder);
       handleTrigger();
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  const handleMinus = async (e, skillToUpdate) => {
-    try {
-      const newSkills = updateSkills(skills, skillToUpdate, -1);
-      const newWilder = updateWilder(wilder, newSkills);
-      await handleWilderUpdate(newWilder);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  const handlePlus = async (e, skillToUpdate) => {
-    try {
-      const newSkills = updateSkills(skills, skillToUpdate, +1);
-      const newWilder = updateWilder(wilder, newSkills);
-      await handleWilderUpdate(newWilder);
     } catch (err) {
       console.log(err);
     }
@@ -72,10 +61,14 @@ const WilderCard = ({ wilder, handleTrigger }) => {
           <Skill
             key={skill.title}
             skill={skill}
-            handleMinus={(e) => handleMinus(e, skill)}
-            handlePlus={(e) => handlePlus(e, skill)}
+            handleMinus={(e) => handleWilderUpdate(skill, -1)}
+            handlePlus={(e) => handleWilderUpdate(skill, +1)}
           />
         ))}
+        <SkillForm
+          newSkillChange={newSkillChange}
+          handleValidation={(e) => handleWilderUpdate(newSkill, +1)}
+        />
       </ul>
     </article>
   );

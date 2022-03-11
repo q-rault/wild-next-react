@@ -3,7 +3,7 @@ import axios from "axios";
 import apiRequests from "../config/apiRequests.config";
 import styles from "../styles/WilderFormStyles.module.css";
 
-function AddWilderForm() {
+function AddWilderForm({ handleTrigger }) {
   const [name, setName] = useState("");
   const [city, setCity] = useState("");
   const [error, setError] = useState([]);
@@ -17,6 +17,7 @@ function AddWilderForm() {
       });
       if (result.data.success) {
         setError("");
+        handleTrigger();
       }
     } catch (error) {
       if (error.response) {

@@ -65,4 +65,5 @@ footer {
 
 .inline-button {
   cursor: pointer;
+  margin: 0 0.2rem;
 }

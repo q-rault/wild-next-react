@@ -16,3 +16,22 @@ export const updateWilder = async (id, wilder) => {
     console.log(err);
   }
 };
+
+export const addWilder = async (name, city) => {
+  try {
+    return await axios.post(apiRequests.wilderCreateString, {
+      name: name,
+      city: city,
+    });
+  } catch (err) {
+    console.log(err);
+  }
+};
+
+export const readWilders = async () => {
+  try {
+    return await axios.get(apiRequests.wilderReadString);
+  } catch (err) {
+    console.log(err);
+  }
+};

@@ -4,8 +4,6 @@ import blank_profile from "../public/blank_profile_picture.png";
 import Skill from "./SkillComponent";
 import styles from "../styles/WilderCardStyles.module.css";
 import InlineButton from "./InlineButtonComponent";
-import apiRequests from "../config/apiRequests.config";
-import axios from "axios";
 import { updateWilderFromSkills } from "../utils/wilder.utils";
 import { useState } from "react";
 import SkillForm from "./SkillForm";

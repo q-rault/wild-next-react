@@ -1,15 +1,14 @@
-import axios from "axios";
 import { useEffect, useState } from "react";
 import AddWilderForm from "../components/WilderForm";
 import CardList from "../components/CardListComponent";
-import apiRequests from "../config/apiRequests.config";
+import { readWilders } from "../api/wilderAPI";
 
 const Home = () => {
   const [wilders, setWilders] = useState([]);
   const [trigger, setTrigger] = useState(0);
   const fetchData = async () => {
     try {
-      const result = await axios.get(apiRequests.wilderReadString);
+      const result = await readWilders();
       setWilders(result.data.result);
     } catch (err) {
       console.log(err);

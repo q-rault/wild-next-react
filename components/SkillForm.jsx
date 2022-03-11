@@ -1,6 +1,5 @@
 import styles from "../styles/SkillStyles.module.css";
-import InlineButton from "./InlineButtonComponent";
-import { useForm } from "react-hook-form";
+
 const SkillForm = ({ newSkillChange, handleValidation }) => {
   const handleKeyUp = (e) => {
     if (e.key === "Enter") {

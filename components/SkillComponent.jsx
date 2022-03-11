@@ -3,7 +3,6 @@ import InlineButton from "./InlineButtonComponent";
 
 const Skill = ({ skill, handleMinus, handlePlus }) => {
   const { title, votes } = skill;
-  // const [count, setCount] = useState(0);
   return (
     <li className={styles.li}>
       <InlineButton handleClick={handleMinus}>-</InlineButton>
